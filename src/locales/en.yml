@@ -1,0 +1,20 @@
+lang:
+  label: English
+  symbol: 🇺🇸
+sidebar:
+  home: Home
+  download: Download
+  settings: Settings
+start_game: PLAY
+user:
+  type:
+    mcs: Microsoft
+    offline: Offline
+settings:
+  label: Settings
+  launcher:
+    label: Launcher
+    language: Language
+    theme: Theme
+  game:
+    label: Game

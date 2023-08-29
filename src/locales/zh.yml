@@ -1,0 +1,20 @@
+lang:
+  label: 中文
+  symbol: 🇨🇳
+sidebar:
+  home: 首页
+  download: 下载
+  settings: 设置
+start_game: 开始游戏
+user:
+  type:
+    mcs: 微软登录
+    offline: 离线模式
+settings:
+  label: 设置
+  launcher:
+    label: 启动器
+    language: 语言
+    theme: 主题
+  game:
+    label: 游戏
