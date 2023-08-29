@@ -18,3 +18,7 @@ settings:
     theme: 主题
   game:
     label: 游戏
+    java:
+      get:
+        desc: 点击自动搜索Java
+        label: 自动搜索Java

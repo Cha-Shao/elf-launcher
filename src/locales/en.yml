@@ -18,3 +18,7 @@ settings:
     theme: Theme
   game:
     label: Game
+    java:
+      get:
+        label: Get Java
+        desc: Click to automatically search for Java

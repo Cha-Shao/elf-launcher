@@ -16,6 +16,7 @@ import {
   motion,
 } from 'framer-motion'
 import configState from '../config'
+import { useStore } from '@nanostores/react'
 
 const routes: Route[] = [{
   label: t('settings.game.label'),
@@ -30,6 +31,7 @@ const routes: Route[] = [{
 const Layout = () => {
   const navigator = useNavigate()
   const location = useLocation()
+  const config = useStore(configState)
 
   return (
     <RouteAnimate className="w-[48rem] m-auto grid grid-cols-4 gap-4">
@@ -55,7 +57,7 @@ const Layout = () => {
                   layoutId="setting"
                   className="w-1 h-5 rounded-full absolute left-0 top-[30%]"
                   style={{
-                    backgroundColor: configState.colorTheme,
+                    backgroundColor: config.colorTheme,
                   }}
                 />
               )}

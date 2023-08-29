@@ -1,3 +1,5 @@
+import { t } from 'i18next'
+import Button from '../components/Base/Button'
 import PlayerCard from '../components/Index/PlayerCard'
 import RouteAnimate from '../components/RouteAnimate'
 import { User } from '../types/user'
@@ -15,6 +17,13 @@ const Page = () => {
       </div>
       <div className="shrink-0 flex justify-between mb-4">
         <PlayerCard {...userData} />
+        <Button
+          size='xl'
+          variant='primary'
+          className='w-64'
+        >
+          {t('start_game')}
+        </Button>
       </div>
     </RouteAnimate>
   )

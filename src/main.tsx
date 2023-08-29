@@ -8,9 +8,11 @@ import Providers from './Providers'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import { setupConfig } from './config'
+import setupLib from './lib/setupLib'
 
 const setup = async () => {
   await setupConfig()
+  await setupLib()
 }
 
 setup()

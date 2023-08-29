@@ -16,6 +16,7 @@
       "shell": {
         "all": false,
         "open": true,
+        "execute": true,
         "scope": [
           {
             "name": "cmd",
@@ -29,6 +30,20 @@
         "minimize": true,
         "setMaximizable": true,
         "startDragging": true
+      },
+      "fs": {
+        "all": true,
+        "scope": [
+          "$RESOURCE/EMCL",
+          "$RESOURCE/EMCL/**",
+          "$RESOURCE/.minecraft",
+          "$RESOURCE/.minecraft/**",
+          "$DATA/.minecraft",
+          "$DATA/.minecraft/**"
+        ]
+      },
+      "path": {
+        "all": true
       }
     },
     "bundle": {
