@@ -16,9 +16,6 @@ const setupLib = async () => {
   const buffer = await res.arrayBuffer()
   const file = await resolve(libPath, 'getJavaVersion.class')
   await writeBinaryFile(file, buffer)
-
-  console.log(`lib saved at ${file}`)
-  console.info('lib setup')
 }
 
 export default setupLib

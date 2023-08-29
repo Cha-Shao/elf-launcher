@@ -13,6 +13,7 @@ import { useStore } from '@nanostores/react'
 interface ButtonProps {
   variant?: 'default' | 'primary' | 'border' | 'ghost'
   size?: SizeType
+  loading?: boolean
 }
 
 const Button = forwardRef((
@@ -23,6 +24,7 @@ const Button = forwardRef((
   const {
     variant = 'default',
     size = 'md',
+    loading = false,
     ...attrs
   } = props
 
@@ -30,6 +32,7 @@ const Button = forwardRef((
     <button
       ref={ref}
       {...attrs}
+      disabled={attrs.disabled || loading}
       className={classNames(
         attrs.className,
         'hover:brightness-105 active:brightness-95',
@@ -45,7 +48,7 @@ const Button = forwardRef((
         size === 'lg' && 'px-6 min-h-[2.5rem] rounded-lg text-xl',
         size === 'xl' && 'px-8 min-h-[4rem] rounded-lg text-2xl',
 
-        attrs.disabled && 'opacity-50',
+        (attrs.disabled || loading) && 'opacity-50',
       )}
       style={{
         ...attrs.style,

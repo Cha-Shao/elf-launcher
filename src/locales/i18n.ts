@@ -1,6 +1,12 @@
-import i18n from 'i18next'
+import i18n, { changeLanguage } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import yaml from 'js-yaml'
+import configState from '../config'
+
+export const setupLanguage = () => {
+  const language = configState.get().language
+  changeLanguage(language)
+}
 
 const locales = Object.fromEntries(
   Object.entries(import.meta.glob('./*.yml', { as: 'raw', eager: true }))
@@ -16,6 +22,6 @@ i18n
     resources: {
       ...locales,
     },
-    lng: 'zh',
+    // lng: 'zh',
     fallbackLng: 'zh',
   })

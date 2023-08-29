@@ -1,4 +1,4 @@
-import { t } from 'i18next'
+import { changeLanguage, t } from 'i18next'
 import Button from '../components/Base/Button'
 import PlayerCard from '../components/Index/PlayerCard'
 import RouteAnimate from '../components/RouteAnimate'
@@ -21,6 +21,7 @@ const Page = () => {
           size='xl'
           variant='primary'
           className='w-64'
+          onClick={() => changeLanguage('en')}
         >
           {t('start_game')}
         </Button>

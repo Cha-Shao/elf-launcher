@@ -20,5 +20,11 @@ settings:
     label: Game
     java:
       get:
-        label: Get Java
+        label: Automatic search
         desc: Click to automatically search for Java
+      import:
+        label: Manual import
+        desc: Click to manually import Java
+      auto:
+        label: Automatic
+        desc: Select Java automatic

@@ -21,4 +21,10 @@ settings:
     java:
       get:
         desc: 点击自动搜索Java
-        label: 自动搜索Java
+        label: 自动搜索
+      import:
+        label: 手动导入
+        desc: 点击手动导入Java
+      auto:
+        label: 自动
+        desc: 自动选择Java

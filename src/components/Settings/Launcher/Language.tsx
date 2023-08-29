@@ -3,6 +3,7 @@ import parseLanguage from '../../../utils/parseLanguage'
 import Button from '../../Base/Button'
 import Title from '../../Base/Title'
 import i18next from 'i18next'
+import { setConfig } from '../../../config'
 
 const Language = () => {
   const { t, i18n: { changeLanguage, language } } = useTranslation()
@@ -18,7 +19,14 @@ const Language = () => {
           <Button
             key={i}
             variant={lang === language ? 'primary' : undefined}
-            onClick={() => changeLanguage(lang)}
+            onClick={async () => {
+              await setConfig(prevConfig => ({
+                ...prevConfig,
+                language: lang,
+              }))
+              changeLanguage(lang)
+              window.location.reload()
+            }}
           >
             <div className='py-2 flex justify-between items-center'>
               <div>

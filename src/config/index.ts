@@ -1,6 +1,11 @@
-import { resolve, resourceDir } from '@tauri-apps/api/path'
+import {
+  resolve,
+  resourceDir,
+} from '@tauri-apps/api/path'
 import { atom } from 'nanostores'
 import { Store } from 'tauri-plugin-store-api'
+import getJava from '../lib/getJava'
+import { uniqBy } from 'lodash'
 
 export interface JavaInfo {
   version: string
@@ -9,7 +14,7 @@ export interface JavaInfo {
 export interface Config {
   colorTheme: string
   javaInfo: JavaInfo[] | null
-  selectedJava: string | null
+  selectedJava: string
   customJava: JavaInfo | null
   language: string
   // 不需要存储的信息
@@ -22,7 +27,7 @@ const store = new Store('setup.ini')
 const configState = atom<Config>({
   colorTheme: '#FF8729',
   javaInfo: null,
-  selectedJava: null,
+  selectedJava: 'auto',
   customJava: null,
   language: 'zh',
   // 不需要存储的信息
@@ -42,11 +47,21 @@ export const setupConfig = async () => {
     await store.save()
     setupConfig()
   }
-  configState.set({
-    ...Object.fromEntries(savedConfig),
-    appPath: await resolve(await resourceDir(), 'EMCL'),
-    minecraftPath: await resolve(await resourceDir(), '.minecraft'),
-  } as unknown as Config)
+
+  const config = Object.fromEntries(savedConfig) as unknown as Config
+  const javaInfo = await getJava()
+  const appPath = await resolve(await resourceDir(), 'EMCL')
+  const minecraftPath = await resolve(await resourceDir(), '.minecraft')
+
+  await setConfig(prevConfig => ({
+    ...config,
+    appPath,
+    minecraftPath,
+    javaInfo: uniqBy([
+      ...(prevConfig.javaInfo || []),
+      ...javaInfo,
+    ], 'path'),
+  }))
 }
 
 export const setConfig: (value: (Config | ((prevState: Config) => Config))) => Promise<void> = async (value) => {
