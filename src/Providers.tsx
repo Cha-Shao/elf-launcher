@@ -3,7 +3,11 @@ const Providers = ({
 }: {
   children: React.ReactNode
 }) => {
-  return children
+  return (
+    <>
+      {children}
+    </>
+  )
 }
 
 export default Providers

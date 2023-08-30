@@ -19,12 +19,32 @@ settings:
   game:
     label: Game
     java:
-      get:
-        label: Automatic search
-        desc: Click to automatically search for Java
       import:
         label: Manual import
         desc: Click to manually import Java
       auto:
         label: Automatic
         desc: Select Java automatic
+      search:
+        label: Automatic search
+        desc: Click to automatically search for Java
+        complete: Search complete
+      manual:
+        complete: Import complete
+        wrong_path: Wrong path, please select the "java.exe" file
+      exist: This Java already exists
+download:
+  label: Download
+  game:
+    label: Game
+    minecraft:
+      label: Minecraft
+      release: Release
+      snapshot: Snapshot
+      old: Old
+    modpack:
+      label: Modpack
+  content:
+    label: Content
+    mod:
+      label: Mod

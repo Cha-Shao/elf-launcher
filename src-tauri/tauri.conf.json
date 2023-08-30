@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "elf-launcher",
-    "version": "0.0.0"
+    "productName": "Elf Minecraft Launcher",
+    "version": "../package.json"
   },
   "tauri": {
     "allowlist": {
@@ -28,12 +28,13 @@
       "window": {
         "close": true,
         "minimize": true,
-        "setMaximizable": true,
         "startDragging": true
       },
       "fs": {
         "all": true,
         "scope": [
+          "$APPDATA/",
+          "$APPDATA/**",
           "$RESOURCE/EMCL",
           "$RESOURCE/EMCL/**",
           "$RESOURCE/.minecraft",
@@ -52,7 +53,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "com.elfmc.emcl",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -68,7 +69,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Elf启动器",
+        "title": "Elf Minecraft Launcher",
         "width": 1280,
         "minWidth": 1280,
         "height": 800,

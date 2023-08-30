@@ -1,8 +1,9 @@
 import Title from '../../Base/Title'
 import { t } from 'i18next'
 import { ChangeEvent } from 'react'
-import configState, { setConfig } from '../../../config'
+import { setConfig } from '../../../config'
 import { useStore } from '@nanostores/react'
+import { configState } from '../../../main'
 
 const colors = [
   '#F53F3F',

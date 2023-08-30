@@ -24,7 +24,7 @@ const Language = () => {
                 ...prevConfig,
                 language: lang,
               }))
-              changeLanguage(lang)
+              await changeLanguage(lang)
               window.location.reload()
             }}
           >

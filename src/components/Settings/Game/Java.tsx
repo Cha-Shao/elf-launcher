@@ -2,7 +2,7 @@ import { t } from 'i18next'
 import Button from '../../Base/Button'
 import Title from '../../Base/Title'
 import { useStore } from '@nanostores/react'
-import configState, {
+import {
   JavaInfo,
   setConfig,
 } from '../../../config'
@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { dialog } from '@tauri-apps/api'
 import { uniqBy } from 'lodash'
 import { useToast } from '../../Base/ToastsProvider'
+import { configState } from '../../../main'
 
 const Java = () => {
   const [loading, setLoading] = useState(false)
@@ -27,19 +28,23 @@ const Java = () => {
         ...javaInfo,
       ], 'path'),
     }))
-    toast.success('搜索完毕')
+    toast.success(t('settings.game.java.search.complete'))
     setLoading(false)
   }
   const handleImport = async () => {
     const javaPath = await dialog.open({
       multiple: false,
       filters: [{
-        name: 'javaw',
+        name: 'java',
         extensions: ['exe'],
       }],
     })
-    if (!Array.isArray(javaPath) && javaPath?.endsWith('bin\\javaw.exe')) {
+    if (!Array.isArray(javaPath) && javaPath?.endsWith('bin\\java.exe')) {
       const javaInfo: JavaInfo = await getJavaInfo(javaPath)
+      if (config.javaInfo?.find(java => java.path === javaPath)) {
+        toast.error(t('settings.game.java.exist'))
+        return
+      }
       await setConfig(prevConfig => ({
         ...prevConfig,
         javaInfo: uniqBy([
@@ -47,6 +52,9 @@ const Java = () => {
           javaInfo,
         ], 'version'),
       }))
+      toast.success(t('settings.game.java.manual.complete'))
+    } else {
+      toast.error(t('settings.game.java.manual.wrong_path'))
     }
   }
 
@@ -54,7 +62,13 @@ const Java = () => {
     <div className="mb-4">
       <Title size='sm' className='mb-2'>Java</Title>
       <div className="grid gap-2">
-        <Button onClick={() => { }}>
+        <Button
+          variant={config.selectedJava === 'auto' ? 'primary' : undefined}
+          onClick={async () => await setConfig(prevConfig => ({
+            ...prevConfig,
+            selectedJava: 'auto',
+          }))}
+        >
           <div className='py-4 text-left'>
             <p>{t('settings.game.java.auto.label')}</p>
             <p className='text-xs opacity-50'>{t('settings.game.java.auto.desc')}</p>
@@ -63,7 +77,11 @@ const Java = () => {
         {config.javaInfo && config.javaInfo.map((info, i) => (
           <Button
             key={i}
-            onClick={handleSearch}
+            variant={config.selectedJava === info.version ? 'primary' : undefined}
+            onClick={async () => await setConfig(prevConfig => ({
+              ...prevConfig,
+              selectedJava: info.version,
+            }))}
           >
             <div className='py-4 text-left'>
               <p>{info.version}</p>
@@ -74,8 +92,8 @@ const Java = () => {
         <div className='grid grid-cols-2 gap-2'>
           <Button onClick={handleSearch} loading={loading}>
             <div className='py-4 text-left'>
-              <p>{t('settings.game.java.get.label')}</p>
-              <p className='text-xs opacity-50'>{t('settings.game.java.get.desc')}</p>
+              <p>{t('settings.game.java.search.label')}</p>
+              <p className='text-xs opacity-50'>{t('settings.game.java.search.desc')}</p>
             </div>
           </Button>
           <Button onClick={handleImport}>

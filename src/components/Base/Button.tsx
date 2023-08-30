@@ -7,8 +7,8 @@ import {
 import { SizeType } from './component'
 import classNames from 'classnames'
 import getTextColor from '../../utils/getTextColor'
-import configState from '../../config'
 import { useStore } from '@nanostores/react'
+import { configState } from '../../main'
 
 interface ButtonProps {
   variant?: 'default' | 'primary' | 'border' | 'ghost'

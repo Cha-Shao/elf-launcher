@@ -15,6 +15,10 @@ const App = () => {
         <main className="flex-grow h-full px-4 pt-8">
           <Suspense fallback={<></>}>
             {useRoutes(routes)}
+            {/* {useRoutes(routes.map(route => ({
+              ...route,
+              path: `${route.path}/*`,
+            })))} */}
           </Suspense>
         </main>
         <ToastsProvider />

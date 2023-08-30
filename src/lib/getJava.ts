@@ -5,8 +5,6 @@ import {
 import type { JavaInfo } from '../config'
 import runCommand from './runCommand'
 
-const libPath = await resolve(await resolve(await resourceDir(), 'EMCL'), 'lib')
-
 export const getJavaPaths = async (): Promise<string[]> => {
   const whereJavaStdout = await runCommand('where', ['java'])
   const javaPaths = whereJavaStdout.split('\n').map(path => path.slice(0, path.length - 5))
@@ -14,6 +12,7 @@ export const getJavaPaths = async (): Promise<string[]> => {
 }
 
 export const getJavaInfo = async (path: string): Promise<JavaInfo> => {
+  const libPath = await resolve(await resolve(await resourceDir(), 'EMCL'), 'lib')
   const version = await runCommand('cd', [
     libPath.replace(/\\\\\?\\/, ''),
     '&&',

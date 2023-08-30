@@ -15,20 +15,20 @@ import {
   AnimatePresence,
   motion,
 } from 'framer-motion'
-import configState from '../config'
+import { configState } from '../main'
 import { useStore } from '@nanostores/react'
 
-const routes: Route[] = [{
-  label: 'settings.game.label',
-  path: '/game',
-  icon: 'icon-[ph--game-controller-bold]',
-}, {
-  label: 'settings.launcher.label',
-  path: '/launcher',
-  icon: 'icon-[ph--rocket-launch-bold]',
-}]
-
 const Layout = () => {
+  const routes: Route[] = [{
+    label: t('settings.game.label'),
+    path: '/game',
+    icon: 'icon-[ph--game-controller-bold]',
+  }, {
+    label: t('settings.launcher.label'),
+    path: '/launcher',
+    icon: 'icon-[ph--rocket-launch-bold]',
+  }]
+
   const navigator = useNavigate()
   const location = useLocation()
   const config = useStore(configState)
@@ -48,14 +48,14 @@ const Layout = () => {
                 <span className={classNames(
                   route.icon,
                 )} />
-                <span>{t(route.label)}</span>
+                <span>{route.label}</span>
               </div>
             </Button>
             <AnimatePresence>
               {location.pathname.includes(route.path) && (
                 <motion.div
                   layoutId="setting"
-                  className="w-1 h-5 rounded-full absolute left-0 top-[30%]"
+                  className="w-1 h-5 rounded-full absolute left-0 top-[22.5%]"
                   style={{
                     backgroundColor: config.colorTheme,
                   }}

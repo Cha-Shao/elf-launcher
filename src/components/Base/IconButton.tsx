@@ -5,7 +5,8 @@ import {
 } from 'react'
 import { SizeType } from './component'
 import classNames from 'classnames'
-import configState from '../../config'
+import { configState } from '../../main'
+import { useStore } from '@nanostores/react'
 
 interface IconButtonProps {
   icon: React.ReactNode
@@ -17,6 +18,7 @@ const IconButton = forwardRef((
   props: IconButtonProps & ButtonHTMLAttributes<HTMLButtonElement>,
   ref: ForwardedRef<HTMLButtonElement>,
 ) => {
+  const config = useStore(configState)
   const {
     icon = null,
     variant = 'default',
@@ -49,8 +51,8 @@ const IconButton = forwardRef((
       style={{
         ...attrs.style,
         ...(variant === 'primary' && {
-          backgroundColor: configState.colorTheme,
-          boxShadow: `0 4px 6px -1px ${configState.colorTheme}88, 0 2px 4px -2px ${configState.colorTheme}88`,
+          backgroundColor: config.colorTheme,
+          boxShadow: `0 4px 6px -1px ${config.colorTheme}88, 0 2px 4px -2px ${config.colorTheme}88`,
         }),
       }}
     >

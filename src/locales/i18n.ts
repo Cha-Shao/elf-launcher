@@ -1,11 +1,11 @@
 import i18n, { changeLanguage } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import yaml from 'js-yaml'
-import configState from '../config'
+import { configState } from '../main'
 
-export const setupLanguage = () => {
+export const setupLanguage = async () => {
   const language = configState.get().language
-  changeLanguage(language)
+  await changeLanguage(language)
 }
 
 const locales = Object.fromEntries(

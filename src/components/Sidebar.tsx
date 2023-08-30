@@ -8,7 +8,7 @@ import {
   AnimatePresence,
   motion,
 } from 'framer-motion'
-import configState from '../config'
+import { configState } from '../main'
 import { useStore } from '@nanostores/react'
 
 export interface Route {
@@ -23,13 +23,13 @@ const routes: Route[] = [{
   icon: 'icon-[ph--house-bold]',
   path: '/',
 }, {
-  label: '新闻',
-  icon: 'icon-[ph--compass-bold]',
-  path: '/news',
+  label: '下载',
+  icon: 'icon-[ph--download-simple-bold]',
+  path: '/download/game/minecraft',
 }, {
-  label: '商店',
-  icon: 'icon-[ph--shopping-cart-bold]',
-  path: '/store',
+  label: '版本列表',
+  icon: 'icon-[ph--shapes-bold]',
+  path: '/version',
 }]
 
 const Sidebar = () => {

@@ -4,7 +4,7 @@ import {
   writeBinaryFile,
 } from '@tauri-apps/api/fs'
 import { resolve } from '@tauri-apps/api/path'
-import configState from '../config'
+import { configState } from '../main'
 
 const setupLib = async () => {
   const libPath = await resolve(configState.get().appPath, 'lib')
