@@ -47,58 +47,60 @@ const Page = () => {
   }, [])
 
   return (
-    <RouteAnimate>
+    <RouteAnimate className='h-full flex flex-col'>
       <Title size='lg' className='mb-4'>
         {t('download.game.minecraft.label')}
       </Title>
-      <Card>
-        <div className='p-1 rounded-lg bg-lightBackground dark:bg-darkBackground grid grid-cols-3 gap-1 mb-2'>
-          {versionTypes.map((versionType, i) => (
-            <button
-              key={i}
-              className='h-8 relative'
-              onClick={() => setSelectedType(versionType)}
-            >
-              <span className='relative z-10'>{t(`download.game.minecraft.${versionType}`)}</span>
-              <AnimatePresence>
-                {selectedType === versionType && (
-                  <motion.div
-                    layoutId='version-type'
-                    className='w-full h-full rounded-md absolute left-0 top-0 bg-light dark:bg-dark'
-                  />
-                )}
-              </AnimatePresence>
-            </button>
-          ))}
-        </div>
-        <div className='h-[calc(100vh-11rem)] overflow-y-scroll'>
-          {versionManifest
-            ? versionManifest.versions
-              .filter(version => version.type.startsWith(selectedType))
-              .map(version => {
-                const image = (() => {
-                  switch (version.type) {
-                    case 'release': return '/img/icon/grass_block.png'
-                    case 'snapshot': return '/img/icon/command_block.png'
-                    default: return '/img/icon/cobblestone.png'
-                  }
-                })()
-                return (
-                  <VersionCard
-                    key={version.id}
-                    id={version.id}
-                    image={image}
-                    content={version.id}
-                    desc={dayjs(version.releaseTime).format('YYYY-MM-DD hh:mm')}
-                    onClick={() => navigator('/download/game/minecraft/install?' + new URLSearchParams({
-                      url: version.url,
-                    }))}
-                  />
-                )
-              }) : Array(6).fill(null).map((_, i) => (
-                <Skeleton key={i} className='h-16 mb-1 bg-lightBackground ark:bg-darkBackground' />
-              ))
-          }
+      <Card className='flex-grow overflow-hidden'>
+        <div className='h-full flex flex-col overflow-hidden'>
+          <div className='p-1 rounded-lg bg-lightBackground dark:bg-darkBackground grid grid-cols-3 gap-1 mb-2'>
+            {versionTypes.map((versionType, i) => (
+              <button
+                key={i}
+                className='h-8 relative'
+                onClick={() => setSelectedType(versionType)}
+              >
+                <span className='relative z-10'>{t(`download.game.minecraft.${versionType}`)}</span>
+                <AnimatePresence>
+                  {selectedType === versionType && (
+                    <motion.div
+                      layoutId='version-type'
+                      className='w-full h-full rounded-md absolute left-0 top-0 bg-light dark:bg-dark'
+                    />
+                  )}
+                </AnimatePresence>
+              </button>
+            ))}
+          </div>
+          <div className='flex-grow overflow-y-scroll'>
+            {versionManifest
+              ? versionManifest.versions
+                .filter(version => version.type.startsWith(selectedType))
+                .map(version => {
+                  const image = (() => {
+                    switch (version.type) {
+                      case 'release': return '/img/icon/grass_block.png'
+                      case 'snapshot': return '/img/icon/command_block.png'
+                      default: return '/img/icon/cobblestone.png'
+                    }
+                  })()
+                  return (
+                    <VersionCard
+                      key={version.id}
+                      id={version.id}
+                      image={image}
+                      content={version.id}
+                      desc={dayjs(version.releaseTime).format('YYYY-MM-DD hh:mm')}
+                      onClick={() => navigator('/download/game/minecraft/install?' + new URLSearchParams({
+                        url: version.url,
+                      }))}
+                    />
+                  )
+                }) : Array(6).fill(null).map((_, i) => (
+                  <Skeleton key={i} className='h-16 mb-1 bg-lightBackground ark:bg-darkBackground' />
+                ))
+            }
+          </div>
         </div>
       </Card>
     </RouteAnimate>

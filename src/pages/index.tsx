@@ -12,7 +12,7 @@ const userData: User = {
 const Page = () => {
   return (
     <RouteAnimate className="flex-grow h-full flex flex-col gap-2">
-      <div className="flex-grow">
+      <div className="flex-grow pt-8 overflow-y-scroll">
         content
       </div>
       <div className="shrink-0 flex justify-between mb-4">

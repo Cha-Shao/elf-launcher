@@ -48,8 +48,12 @@ const Layout = () => {
   const config = useStore(configState)
 
   return (
-    <RouteAnimate className="w-[48rem] m-auto grid grid-cols-4 gap-4">
-      <div>
+    <RouteAnimate className={classNames(
+      'w-[48rem] m-auto',
+      'grid grid-cols-4 gap-4',
+      'h-full',
+    )}>
+      <div className='pt-8'>
         {routes.map((route, i) => (
           <div key={i}>
             <Title size="sm" className="mb-2">{route.label}</Title>
@@ -84,7 +88,7 @@ const Layout = () => {
           </div>
         ))}
       </div>
-      <div className="col-span-3">
+      <div className="pt-8 pb-4 col-span-3 h-full overflow-hidden">
         <Suspense fallback={<></>}>
           {useRoutes(pageRoutes.find(
             route => route.path === 'download')!.children!,

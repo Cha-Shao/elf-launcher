@@ -39,7 +39,7 @@ const Layout = () => {
       'grid grid-cols-4 gap-4',
       'h-full',
     )}>
-      <div>
+      <div className='pt-8'>
         <Title size="sm" className="mb-2">{t('settings.label')}</Title>
         {routes.map((route, i) => (
           <div key={i} className='relative'>
@@ -70,7 +70,7 @@ const Layout = () => {
           </div>
         ))}
       </div>
-      <div className="col-span-3 overflow-y-scroll h-full">
+      <div className="pt-8 col-span-3 overflow-y-scroll h-full">
         <Suspense fallback={<></>}>
           {useRoutes(pageRoutes.find(
             route => route.path === 'settings')!.children!,
