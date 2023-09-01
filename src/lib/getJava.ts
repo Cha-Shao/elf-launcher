@@ -19,7 +19,7 @@ export const getJavaInfo = async (path: string): Promise<JavaInfo> => {
     path,
     'getJavaVersion',
   ])
-  return { path, version }
+  return { path, version: version.slice(0, version.length - 1) }
 }
 
 const getJava = async (): Promise<JavaInfo[]> => {

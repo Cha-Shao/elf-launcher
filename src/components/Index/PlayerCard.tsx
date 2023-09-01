@@ -1,4 +1,4 @@
-import { User } from '../../types/user'
+import { User } from '~/types/user'
 import Card from '../Base/Card'
 import Title from '../Base/Title'
 import { t } from 'i18next'

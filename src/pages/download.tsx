@@ -56,7 +56,7 @@ const Layout = () => {
             {route.children?.map((child, i) => (
               <div key={i} className='relative'>
                 <Button
-                  onClick={() => navigator(route.path + child.path)}
+                  onClick={() => navigator('/download' + route.path + child.path)}
                   variant={location.pathname.includes(route.path + child.path) ? 'default' : 'ghost'}
                   className='mb-1 w-full'
                 >

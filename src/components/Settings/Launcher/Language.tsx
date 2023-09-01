@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import parseLanguage from '../../../utils/parseLanguage'
-import Button from '../../Base/Button'
-import Title from '../../Base/Title'
 import i18next from 'i18next'
-import { setConfig } from '../../../config'
+import Title from '~/components/Base/Title'
+import Button from '~/components/Base/Button'
+import { setConfig } from '~/config'
+import parseLanguage from '~/utils/parseLanguage'
 
 const Language = () => {
   const { t, i18n: { changeLanguage, language } } = useTranslation()

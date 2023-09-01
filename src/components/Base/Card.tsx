@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import {
   ForwardedRef,
   HTMLAttributes,
-  forwardRef
+  forwardRef,
 } from 'react'
 import Title from './Title'
 
@@ -14,7 +14,7 @@ export interface CardProps {
 
 const Card = forwardRef(function Card(
   props: CardProps & HTMLAttributes<HTMLDivElement>,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLDivElement>,
 ) {
   const {
     title = '',

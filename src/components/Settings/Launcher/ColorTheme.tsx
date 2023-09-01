@@ -1,9 +1,9 @@
-import Title from '../../Base/Title'
 import { t } from 'i18next'
 import { ChangeEvent } from 'react'
-import { setConfig } from '../../../config'
 import { useStore } from '@nanostores/react'
-import { configState } from '../../../main'
+import { configState } from '~/main'
+import { setConfig } from '~/config'
+import Title from '~/components/Base/Title'
 
 const colors = [
   '#F53F3F',
@@ -48,7 +48,10 @@ const ColorTheme = () => {
           <div
             key={i}
             className='w-12 h-12 rounded-md cursor-pointer active:scale-95 duration-200'
-            style={{ backgroundColor: color }}
+            style={{
+              backgroundColor: color,
+              ...(color === config.colorTheme && { boxShadow: `0 4px 6px -1px ${color}40, 0 2px 4px -2px ${color}40` }),
+            }}
             onClick={async () => {
               await setConfig(prevConfig => ({
                 ...prevConfig,

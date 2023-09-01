@@ -5,8 +5,8 @@ import {
 } from 'react'
 import { SizeType } from './component'
 import classNames from 'classnames'
-import { configState } from '../../main'
 import { useStore } from '@nanostores/react'
+import { configState } from '~/main'
 
 interface IconButtonProps {
   icon: React.ReactNode

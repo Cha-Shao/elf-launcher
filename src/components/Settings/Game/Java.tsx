@@ -1,17 +1,19 @@
 import { t } from 'i18next'
-import Button from '../../Base/Button'
-import Title from '../../Base/Title'
 import { useStore } from '@nanostores/react'
 import {
   JavaInfo,
   setConfig,
 } from '../../../config'
-import getJava, { getJavaInfo } from '../../../lib/getJava'
+import getJava, {
+  getJavaInfo,
+} from '../../../lib/getJava'
 import { useState } from 'react'
 import { dialog } from '@tauri-apps/api'
 import { uniqBy } from 'lodash'
 import { useToast } from '../../Base/ToastsProvider'
 import { configState } from '../../../main'
+import Title from '~/components/Base/Title'
+import Button from '~/components/Base/Button'
 
 const Java = () => {
   const [loading, setLoading] = useState(false)

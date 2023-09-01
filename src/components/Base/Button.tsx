@@ -6,9 +6,9 @@ import {
 } from 'react'
 import { SizeType } from './component'
 import classNames from 'classnames'
-import getTextColor from '../../utils/getTextColor'
 import { useStore } from '@nanostores/react'
 import { configState } from '../../main'
+import getTextColor from '~/utils/getTextColor'
 
 interface ButtonProps {
   variant?: 'default' | 'primary' | 'border' | 'ghost'
@@ -48,13 +48,13 @@ const Button = forwardRef((
         size === 'lg' && 'px-6 min-h-[2.5rem] rounded-lg text-xl',
         size === 'xl' && 'px-8 min-h-[4rem] rounded-lg text-2xl',
 
-        (attrs.disabled || loading) && 'opacity-50',
+        (attrs.disabled || loading) && 'opacity-50 cursor-no-drop',
       )}
       style={{
         ...attrs.style,
         ...(variant === 'primary' && {
           backgroundColor: config.colorTheme,
-          boxShadow: `0 4px 6px -1px ${config.colorTheme}88, 0 2px 4px -2px ${config.colorTheme}88`,
+          boxShadow: `0 4px 6px -1px ${config.colorTheme}40, 0 2px 4px -2px ${config.colorTheme}40`,
           color: getTextColor(config.colorTheme),
         }),
       }}

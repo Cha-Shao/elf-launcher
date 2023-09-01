@@ -1,4 +1,4 @@
-public  class getJavaVersion {
+public class getJavaVersion {
     public getJavaVersion() {
 
     }
