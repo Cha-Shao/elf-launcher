@@ -56,7 +56,7 @@ const Java = () => {
       }))
       toast.success(t('settings.game.java.manual.complete'))
     } else {
-      toast.error(t('settings.game.java.manual.wrong_path'))
+      toast.error(t('settings.game.java.manual.invalid'))
     }
   }
 
@@ -71,9 +71,12 @@ const Java = () => {
             selectedJava: 'auto',
           }))}
         >
-          <div className='py-4 text-left'>
-            <p>{t('settings.game.java.auto.label')}</p>
-            <p className='text-xs opacity-50'>{t('settings.game.java.auto.desc')}</p>
+          <div className="py-4 flex justify-between items-center">
+            <div className='text-left'>
+              <p>{t('settings.game.java.auto.label')}</p>
+              <p className='text-xs opacity-50'>{t('settings.game.java.auto.desc')}</p>
+            </div>
+            {config.selectedJava === 'auto' && <span className="icon-[ph--check-bold]" />}
           </div>
         </Button>
         {config.javaInfo && config.javaInfo.map((info, i) => (
@@ -85,9 +88,12 @@ const Java = () => {
               selectedJava: info.version,
             }))}
           >
-            <div className='py-4 text-left'>
-              <p>{info.version}</p>
-              <p className='text-xs opacity-50'>{info.path}</p>
+            <div className="py-4 flex justify-between items-center">
+              <div className='text-left'>
+                <p>{info.version}</p>
+                <p className='text-xs opacity-50'>{info.path}</p>
+              </div>
+              {config.selectedJava === info.version && <span className="icon-[ph--check-bold]" />}
             </div>
           </Button>
         ))}

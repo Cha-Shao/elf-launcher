@@ -63,6 +63,7 @@ const Layout = () => {
                   <div className="flex items-center gap-2 py-2">
                     <span className={classNames(
                       child.icon,
+                      'text-lg',
                     )} />
                     <span>{child.label}</span>
                   </div>

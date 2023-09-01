@@ -41,7 +41,7 @@ const ColorTheme = () => {
   return (
     <div className='mb-4'>
       <Title size="sm" className="mb-2">
-        {t('settings.launcher.theme')}
+        {t('settings.launcher.theme.label')}
       </Title>
       <div className='grid grid-cols-10 gap-2'>
         {colors.map((color, i) => (

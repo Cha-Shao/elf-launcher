@@ -11,9 +11,13 @@ import App from './components/App'
 import { atom } from 'nanostores'
 
 export const configState = atom<Config>({
-  colorTheme: '#FF8729',
+  // game
+  isolate: false,
   javaInfo: null,
   selectedJava: 'auto',
+  ram: 1,
+  // launcher
+  colorTheme: '#FF8729',
   language: 'zh',
   // 不需要存储的信息
   appPath: '',

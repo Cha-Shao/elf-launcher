@@ -34,7 +34,11 @@ const Layout = () => {
   const config = useStore(configState)
 
   return (
-    <RouteAnimate className="w-[48rem] m-auto grid grid-cols-4 gap-4">
+    <RouteAnimate className={classNames(
+      'w-[48rem] m-auto',
+      'grid grid-cols-4 gap-4',
+      'h-full',
+    )}>
       <div>
         <Title size="sm" className="mb-2">{t('settings.label')}</Title>
         {routes.map((route, i) => (
@@ -47,6 +51,7 @@ const Layout = () => {
               <div className="flex items-center gap-2 py-2">
                 <span className={classNames(
                   route.icon,
+                  'text-lg',
                 )} />
                 <span>{route.label}</span>
               </div>
@@ -65,7 +70,7 @@ const Layout = () => {
           </div>
         ))}
       </div>
-      <div className="col-span-3">
+      <div className="col-span-3 overflow-y-scroll h-full">
         <Suspense fallback={<></>}>
           {useRoutes(pageRoutes.find(
             route => route.path === 'settings')!.children!,

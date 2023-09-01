@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <div className="flex h-screen">
         <Sidebar />
-        <main className="flex-grow h-full px-4 pt-8">
+        <main className="flex-grow h-full px-4 pt-8 overflow-hidden">
           <Suspense fallback={<></>}>
             {useRoutes(routes)}
             {/* {useRoutes(routes.map(route => ({

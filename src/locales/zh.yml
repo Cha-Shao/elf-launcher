@@ -14,11 +14,14 @@ settings:
   label: 设置
   launcher:
     label: 启动器
-    language: 语言
-    theme: 主题
+    language:
+      label: 语言
+    theme:
+      label: 主题
   game:
     label: 游戏
     java:
+      label: Java
       import:
         label: 手动导入
         desc: 点击手动导入Java
@@ -31,8 +34,27 @@ settings:
         complete: 搜索完毕
       manual:
         complete: 导入完毕
-        wrong_path: 路径无效，请选择java.exe文件
+        invalid: 路径无效，请选择java.exe文件
       exist: 此Java已存在
+    ram:
+      label: 内存
+      low:
+        label: 省电模式
+        desc: 分配少量的内存，可能会造成卡顿
+      normal:
+        label: 平衡模式
+        desc: 分配充足的内存，最基本游玩感受
+      high:
+        label: 卓越模式
+        desc: 分配更多内存，适合特殊情况
+    isolate:
+      label: 版本隔离
+      close:
+        label: 关闭
+        desc: 不使用版本隔离
+      open:
+        label: 启用
+        desc: 启用版本隔离
 download:
   label: 下载
   game:

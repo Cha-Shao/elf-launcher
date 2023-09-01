@@ -13,7 +13,7 @@ const Header = () => {
         <span className='icon-[ph--minus-bold]' />
       </button>
       <button
-        className='h-8 w-12 flex justify-center items-center hover:bg-red-500 dark:hover:bg-red-700 hover:text-white'
+        className='h-8 w-12 flex justify-center items-center hover:bg-red-700 hover:text-white'
         onClick={() => appWindow.close()}
       >
         <span className='icon-[ph--x-bold]' />

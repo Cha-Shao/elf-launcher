@@ -8,7 +8,7 @@ const getTextColor = (hexColor: string) => {
   const brightness = (red * 299 + green * 587 + blue * 114) / 1000
 
   // 根据相对亮度判断文字颜色
-  if (brightness >= 128) {
+  if (brightness >= 144) {
     return 'black'
   } else {
     return 'white'

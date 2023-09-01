@@ -14,6 +14,9 @@ dependencies:
   '@tauri-apps/api':
     specifier: ^1.4.0
     version: 1.4.0
+  '@zag-js/react':
+    specifier: ^0.17.0
+    version: 0.17.0(react-dom@18.2.0)(react@18.2.0)
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
@@ -1013,6 +1016,39 @@ packages:
       - supports-color
     dev: true
 
+  /@zag-js/core@0.17.0:
+    resolution: {integrity: sha512-Q9E7lXcUYlVrPP9PUKcQGO7GxF4EOQ+AqKhZpKTK21OUpX8rn9At7/+UtFrD7T56waybT7WW++iXH+GqLXH7vQ==}
+    dependencies:
+      '@zag-js/store': 0.17.0
+      klona: 2.0.6
+    dev: false
+
+  /@zag-js/react@0.17.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-VuXLTTF14KXqYWmjivGh/Gw7vT1HqVE3JMWiq3VyzVB8V3pAXc5XDUmpr3Ej9k44SDdpzzSCov9cRIgGAVew0w==}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      '@zag-js/core': 0.17.0
+      '@zag-js/store': 0.17.0
+      '@zag-js/types': 0.17.0
+      proxy-compare: 2.5.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@zag-js/store@0.17.0:
+    resolution: {integrity: sha512-DbWnd69odTS4pD0BG4t4KifR1NbcNfHwC7cviMHREXm+eqh04Rb8ZBhFFFyyOrMx6uHq4Ge6VyL2RnszRUwa2Q==}
+    dependencies:
+      proxy-compare: 2.5.1
+    dev: false
+
+  /@zag-js/types@0.17.0:
+    resolution: {integrity: sha512-SM8c9dR6dmcEHNzaUJNsEtZVdW+E45P5x1uQhMe6unD/TpaHsSLoHHpk0erEJlaFywXkTVoVMHr8NaXCs2bLBw==}
+    dependencies:
+      csstype: 3.1.2
+    dev: false
+
   /acorn-jsx@5.3.2(acorn@8.10.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1312,7 +1348,6 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-    dev: true
 
   /dayjs@1.11.9:
     resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
@@ -2228,6 +2263,11 @@ packages:
       json-buffer: 3.0.1
     dev: true
 
+  /klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
+    dev: false
+
   /levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -2582,6 +2622,10 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+
+  /proxy-compare@2.5.1:
+    resolution: {integrity: sha512-oyfc0Tx87Cpwva5ZXezSp5V9vht1c7dZBhvuV/y3ctkgMVUmiAGDVeeB0dKhGSyT0v1ZTEQYpe/RXlBVBNuCLA==}
+    dev: false
 
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
@@ -3225,7 +3269,7 @@ packages:
     dev: true
 
   github.com/tauri-apps/tauri-plugin-store/a65ce9bfb168a9a3cd7ed4102b9f22770cc3abfa:
-    resolution: {commit: a65ce9bfb168a9a3cd7ed4102b9f22770cc3abfa, repo: git+ssh://git@github.com/tauri-apps/tauri-plugin-store.git, type: git}
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/a65ce9bfb168a9a3cd7ed4102b9f22770cc3abfa}
     name: tauri-plugin-store-api
     version: 0.0.0
     dependencies:

@@ -14,11 +14,14 @@ settings:
   label: Settings
   launcher:
     label: Launcher
-    language: Language
-    theme: Theme
+    language:
+      label: Language
+    theme:
+      label: Theme
   game:
     label: Game
     java:
+      label: Java
       import:
         label: Manual import
         desc: Click to manually import Java
@@ -31,8 +34,27 @@ settings:
         complete: Search complete
       manual:
         complete: Import complete
-        wrong_path: Wrong path, please select the "java.exe" file
+        invalid: Wrong path, please select the "java.exe" file
       exist: This Java already exists
+    ram:
+      label: Ram
+      low:
+        label: Low
+        desc: Allocating a small amount of memory may cause stuttering
+      normal:
+        label: Normal
+        desc: Allocating sufficient memory for the most basic gaming experience
+      high:
+        label: High
+        desc: Allocate more memory, suitable for special situations
+    isolate:
+      label: Isolate
+      close:
+        label: Disable
+        desc: Disable version isolate
+      open:
+        label: Enable
+        desc: Enable version isolate
 download:
   label: Download
   game:

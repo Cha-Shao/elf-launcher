@@ -12,7 +12,7 @@ const Language = () => {
   return (
     <div className='mb-4'>
       <Title size="sm" className="mb-2">
-        {t('settings.launcher.language')}
+        {t('settings.launcher.language.label')}
       </Title>
       <div className="grid gap-2">
         {supportedLanguages.map((lang, i) => (

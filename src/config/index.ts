@@ -9,14 +9,23 @@ import { uniqBy } from 'lodash'
 import { configState } from '../main'
 import { exists } from '@tauri-apps/api/fs'
 
+export enum RamRule {
+  Low,
+  Normal,
+  High
+}
 export interface JavaInfo {
   version: string
   path: string
 }
 export interface Config {
-  colorTheme: string
+  // game
+  isolate: boolean
   javaInfo: JavaInfo[] | null
   selectedJava: string
+  ram: RamRule
+  // launcher
+  colorTheme: string
   language: string
   // 不需要存储的信息
   appPath: string
@@ -37,9 +46,11 @@ export const setupConfig = async () => {
 
   const savedConfig = Object.fromEntries(await store.entries()) as unknown as Config
   const config = {
-    colorTheme: savedConfig.colorTheme || '#FF8729',
+    isolate: savedConfig.isolate || false,
     javaInfo: savedConfig.javaInfo || null,
     selectedJava: savedConfig.selectedJava || 'auto',
+    ram: savedConfig.ram || RamRule.Normal,
+    colorTheme: savedConfig.colorTheme || '#FF8729',
     language: savedConfig.language || 'zh',
   }
 
@@ -53,6 +64,7 @@ export const setupConfig = async () => {
       ...(config.javaInfo || []),
       ...javaInfo,
     ], 'version'),
+    // ignore
     appPath,
     minecraftPath,
   })
