@@ -36,7 +36,7 @@ const Isolate = () => {
           <Button
             key={i}
             variant={config.isolate === mode.value ? 'primary' : undefined}
-            onClick={() => setConfig(prevConfig => ({
+            onClick={async () => await setConfig(prevConfig => ({
               ...prevConfig,
               isolate: mode.value,
             }))}

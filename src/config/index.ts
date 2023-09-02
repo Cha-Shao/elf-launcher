@@ -9,7 +9,7 @@ import { uniqBy } from 'lodash'
 import { configState } from '../main'
 import { exists } from '@tauri-apps/api/fs'
 
-export enum RamRule {
+export enum RamMode {
   Low,
   Normal,
   High
@@ -18,17 +18,27 @@ export interface JavaInfo {
   version: string
   path: string
 }
+export enum HomeMode {
+  Empty,
+  Official,
+  Local,
+  Online
+}
 export interface Config {
   // game
   isolate: boolean
   javaInfo: JavaInfo[] | null
   selectedJava: string
-  ram: RamRule
+  ramMode: RamMode
   // launcher
   colorTheme: string
   language: string
-  // 不需要存储的信息
+  homeMode: HomeMode
+  homeUrl: string
+}
+export interface ConfigRuntime extends Config {
   appPath: string
+  configPath: string
   minecraftPath: string
 }
 
@@ -45,17 +55,20 @@ export const setupConfig = async () => {
   }
 
   const savedConfig = Object.fromEntries(await store.entries()) as unknown as Config
-  const config = {
+  const config: Config = {
     isolate: savedConfig.isolate || false,
     javaInfo: savedConfig.javaInfo || null,
     selectedJava: savedConfig.selectedJava || 'auto',
-    ram: savedConfig.ram || RamRule.Normal,
+    ramMode: savedConfig.ramMode || RamMode.Normal,
     colorTheme: savedConfig.colorTheme || '#FF8729',
     language: savedConfig.language || 'zh',
+    homeMode: HomeMode.Empty,
+    homeUrl: '',
   }
 
   const javaInfo = await getJava()
   const appPath = await resolve(await resourceDir(), 'EMCL')
+  const configPath = await resolve(await appDataDir())
   const minecraftPath = await resolve(await resourceDir(), '.minecraft')
 
   await setConfig({
@@ -66,11 +79,12 @@ export const setupConfig = async () => {
     ], 'version'),
     // ignore
     appPath,
+    configPath,
     minecraftPath,
   })
 }
 
-export const setConfig: (value: (Config | ((prevState: Config) => Config))) => Promise<void> = async (value) => {
+export const setConfig: (value: (ConfigRuntime | ((prevState: ConfigRuntime) => ConfigRuntime))) => Promise<void> = async (value) => {
   if (typeof value === 'object') {
     configState.set(value)
     Promise.all(

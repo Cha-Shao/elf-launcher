@@ -19,7 +19,10 @@ export const getJavaInfo = async (path: string): Promise<JavaInfo> => {
     path,
     'getJavaVersion',
   ])
-  return { path, version: version.slice(0, version.length - 1) }
+  return {
+    path: path.replace('\\java.exe', ''),
+    version: version.slice(0, version.length - 1),
+  }
 }
 
 const getJava = async (): Promise<JavaInfo[]> => {

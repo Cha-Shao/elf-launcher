@@ -18,6 +18,17 @@ settings:
       label: 语言
     theme:
       label: 主题
+    home:
+      label: 自定义主页
+      desc: 可输入本地地址或网络地址，本地地址将从/读取
+      empty:
+        title: 空白
+      official:
+        title: 官方
+      local:
+        title: 本地
+      online:
+        title: 联网
   game:
     label: 游戏
     java:
@@ -70,3 +81,5 @@ download:
     label: 内容
     mod:
       label: 模组
+  install:
+    label: 安装

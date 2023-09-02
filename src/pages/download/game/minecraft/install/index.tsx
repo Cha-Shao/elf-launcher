@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import {
   useCallback,
   useEffect,
@@ -14,12 +15,12 @@ import useQuery from '~/utils/useQuery'
 
 const Page = () => {
   const [versionData, setVersionData] = useState<VersionData | null>(null)
-  const { search } = useLocation()
-  const query = useQuery(search)
   const [installData, setInstallData] = useState({
     versionName: '',
   })
 
+  const { search } = useLocation()
+  const query = useQuery(search)
   const url = query.get('url')!
 
   const getVersionData = useCallback(async () => {
@@ -61,13 +62,15 @@ const Page = () => {
               <div className='py-4 flex flex-col items-center'>
                 <img src="/img/icon/forge.png" alt="" className='w-32 dark:hidden' />
                 <img src="/img/icon/forge_dark.png" alt="" className='w-32 hidden dark:block' />
-                <p>Forge</p>
+                <p className='text-lg'>Forge</p>
+                <p className='opacity-50'>未选择</p>
               </div>
             </Button>
             <Button>
               <div className='flex flex-col items-center'>
                 <img src="/img/icon/fabric.png" alt="" className='w-32' />
-                <p>Fabric</p>
+                <p className='text-lg'>Fabric</p>
+                <p className='opacity-50'>未选择</p>
               </div>
             </Button>
           </div>
@@ -75,7 +78,15 @@ const Page = () => {
       ) : (
         'loading'
       )}
-      {JSON.stringify(installData)}
+      <div className='my-4 text-center'>
+        <Button
+          size='lg'
+          variant='primary'
+          className='px-8'
+        >
+          {t('download.install.label')}
+        </Button>
+      </div>
     </RouteAnimate>
   )
 }

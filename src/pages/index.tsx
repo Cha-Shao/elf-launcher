@@ -3,6 +3,7 @@ import Button from '../components/Base/Button'
 import PlayerCard from '../components/Index/PlayerCard'
 import RouteAnimate from '../components/RouteAnimate'
 import { User } from '../types/user'
+import Home from '~/components/Index/Home'
 
 const userData: User = {
   username: 'Cha_Shao',
@@ -12,8 +13,10 @@ const userData: User = {
 const Page = () => {
   return (
     <RouteAnimate className="flex-grow h-full flex flex-col gap-2">
-      <div className="flex-grow pt-8 overflow-y-scroll">
-        content
+      <div className="flex-grow pt-8 -mr-4 overflow-y-scroll">
+        <div className='pr-4'>
+          <Home />
+        </div>
       </div>
       <div className="shrink-0 flex justify-between mb-4">
         <PlayerCard {...userData} />

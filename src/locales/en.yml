@@ -18,6 +18,16 @@ settings:
       label: Language
     theme:
       label: Theme
+    home:
+      label: Custom home page
+      empty:
+        title: Empty
+      official:
+        title: Official
+      local:
+        title: Local
+      online:
+        title: Online
   game:
     label: Game
     java:
@@ -70,3 +80,5 @@ download:
     label: Content
     mod:
       label: Mod
+  install:
+    label: Install

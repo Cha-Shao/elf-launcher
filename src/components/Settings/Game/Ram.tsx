@@ -4,7 +4,7 @@ import { t } from 'i18next'
 import Button from '~/components/Base/Button'
 import Title from '~/components/Base/Title'
 import {
-  RamRule,
+  RamMode,
   setConfig,
 } from '~/config'
 import { configState } from '~/main'
@@ -13,22 +13,22 @@ const ramMode: {
   icon: string
   label: string
   desc: string
-  value: RamRule
+  value: RamMode
 }[] = [{
   icon: 'icon-[ph--lightning-bold]',
   label: t('settings.game.ram.low.label'),
   desc: t('settings.game.ram.low.desc'),
-  value: RamRule.Low,
+  value: RamMode.Low,
 }, {
   icon: 'icon-[ph--scales-bold]',
   label: t('settings.game.ram.normal.label'),
   desc: t('settings.game.ram.normal.desc'),
-  value: RamRule.Normal,
+  value: RamMode.Normal,
 }, {
   icon: 'icon-[ph--game-controller-bold]',
   label: t('settings.game.ram.high.label'),
   desc: t('settings.game.ram.high.desc'),
-  value: RamRule.High,
+  value: RamMode.High,
 }]
 
 const Ram = () => {
@@ -43,10 +43,10 @@ const Ram = () => {
         {ramMode.map((mode, i) => (
           <Button
             key={i}
-            variant={config.ram === mode.value ? 'primary' : undefined}
-            onClick={() => setConfig(prevConfig => ({
+            variant={config.ramMode === mode.value ? 'primary' : undefined}
+            onClick={async () => await setConfig(prevConfig => ({
               ...prevConfig,
-              ram: mode.value,
+              ramMode: mode.value,
             }))}
           >
             <div className='py-4 text-left'>

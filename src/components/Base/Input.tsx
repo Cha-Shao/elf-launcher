@@ -27,7 +27,7 @@ const Input = forwardRef((
         attrs.className,
         'outline-none',
         'bg-lightBackground dark:bg-darkBackground rounded-md',
-        'min-h-[1.75rem]',
+        'min-h-[2rem]',
         'px-2',
       )}
       onChange={e => onChange(e.target.value)}

@@ -12,10 +12,10 @@ const setupLib = async () => {
   if (!(await exists(libPath)))
     await createDir(libPath)
 
-  const res = await fetch('/lib/getJavaVersion.class')
-  const buffer = await res.arrayBuffer()
-  const file = await resolve(libPath, 'getJavaVersion.class')
-  await writeBinaryFile(file, buffer)
+  const file = await fetch('/lib/getJavaVersion.class')
+  const buffer = await file.arrayBuffer()
+  const path = await resolve(libPath, 'getJavaVersion.class')
+  await writeBinaryFile(path, buffer)
 }
 
 export default setupLib

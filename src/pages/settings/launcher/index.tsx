@@ -3,6 +3,7 @@ import Title from '../../../components/Base/Title'
 import RouteAnimate from '../../../components/RouteAnimate'
 import Language from '../../../components/Settings/Launcher/Language'
 import ColorTheme from '../../../components/Settings/Launcher/ColorTheme'
+import CustomHome from '~/components/Settings/Launcher/CustomHome'
 
 const Page = () => {
 
@@ -13,6 +14,7 @@ const Page = () => {
       </Title>
       <Language />
       <ColorTheme />
+      <CustomHome />
     </RouteAnimate>
   )
 }

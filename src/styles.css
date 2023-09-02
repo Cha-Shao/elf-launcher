@@ -33,6 +33,6 @@
 
 ::-webkit-scrollbar-thumb {
   width: 6px;
-  background-color: #94a3b833;
+  background-color: var(--primary);
   border-radius: 6px;
 }

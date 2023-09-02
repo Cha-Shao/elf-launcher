@@ -97,24 +97,6 @@ const Java = () => {
             </div>
           </Button>
         ))}
-        {config.javaInfo && config.javaInfo.map((info, i) => (
-          <Button
-            key={i}
-            variant={config.selectedJava === info.version ? 'primary' : undefined}
-            onClick={async () => await setConfig(prevConfig => ({
-              ...prevConfig,
-              selectedJava: info.version,
-            }))}
-          >
-            <div className="py-4 flex justify-between items-center">
-              <div className='text-left'>
-                <p>{info.version}</p>
-                <p className='text-xs opacity-50'>{info.path}</p>
-              </div>
-              {config.selectedJava === info.version && <span className="icon-[ph--check-bold]" />}
-            </div>
-          </Button>
-        ))}
         <div className='grid grid-cols-2 gap-2'>
           <Button onClick={handleSearch} loading={loading}>
             <div className='py-4 text-left'>
