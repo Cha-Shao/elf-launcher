@@ -26,6 +26,11 @@ const Home = () => {
   const config = useStore(configState)
   let [content, setContent] = useState('')
 
+  const setupOfficialHome = useCallback(async () => {
+    const homeText = await fetch('https://emcl.elfmc.com/home.md')
+      .then(res => res.text())
+    setContent(homeText)
+  }, [])
   const setupLocalHome = useCallback(async () => {
     const isLocalHomeExist = await exists(await resolve(configState.get().appPath, 'home.md'))
     if (isLocalHomeExist) {
@@ -38,9 +43,16 @@ const Home = () => {
       await writeBinaryFile(path, buffer)
     }
   }, [])
+  const setupOnlineHome = useCallback(async () => {
+    const homeText = await fetch(config.homeUrl)
+      .then(res => res.text())
+    setContent(homeText)
+  }, [])
 
   useEffect(() => {
+    if (config.homeMode === HomeMode.Official) setupOfficialHome()
     if (config.homeMode === HomeMode.Local) setupLocalHome()
+    if (config.homeMode === HomeMode.Online) setupOnlineHome()
   }, [])
 
   return (
@@ -114,6 +126,12 @@ const Home = () => {
               />
             )
           return <div {...props} />
+        },
+        button(props) {
+          if (props.id === 'refresh') {
+            return <button {...props} onClick={() => window.location.reload()}>{props.children}</button>
+          }
+          return <button {...props} />
         },
       }}
     >

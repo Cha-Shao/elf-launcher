@@ -38,7 +38,6 @@ export interface Config {
 }
 export interface ConfigRuntime extends Config {
   appPath: string
-  configPath: string
   minecraftPath: string
 }
 
@@ -68,7 +67,6 @@ export const setupConfig = async () => {
 
   const javaInfo = await getJava()
   const appPath = await resolve(await resourceDir(), 'EMCL')
-  const configPath = await resolve(await appDataDir())
   const minecraftPath = await resolve(await resourceDir(), '.minecraft')
 
   await setConfig({
@@ -79,7 +77,6 @@ export const setupConfig = async () => {
     ], 'version'),
     // ignore
     appPath,
-    configPath,
     minecraftPath,
   })
 }
