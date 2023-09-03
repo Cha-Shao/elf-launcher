@@ -4,6 +4,7 @@ import { useStore } from '@nanostores/react'
 import { configState } from '~/main'
 import { setConfig } from '~/config'
 import Title from '~/components/Base/Title'
+import hexToRgb from '~/utils/hexToRgb'
 
 const colors = [
   '#F53F3F',
@@ -35,7 +36,9 @@ const ColorTheme = () => {
         ...prevConfig,
         colorTheme: `#${color}`,
       }))
-      document.getElementById('root')?.style.setProperty('--primary', `#${color}`)
+      const rootHTML = document.getElementById('root') as HTMLElement
+      rootHTML.style.setProperty('--primary', `#${color}`)
+      rootHTML.style.setProperty('--primary-rgb', hexToRgb(color).join(','))
     }
   }
 
@@ -58,7 +61,9 @@ const ColorTheme = () => {
                 ...prevConfig,
                 colorTheme: color,
               }))
-              document.getElementById('root')?.style.setProperty('--primary', color)
+              const rootHTML = document.getElementById('root') as HTMLElement
+              rootHTML.style.setProperty('--primary', color)
+              rootHTML.style.setProperty('--primary-rgb', hexToRgb(color).join(','))
             }}
           />
         ))}

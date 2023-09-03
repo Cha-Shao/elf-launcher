@@ -6,8 +6,6 @@ import {
 } from '@tauri-apps/api/fs'
 import { resolve } from '@tauri-apps/api/path'
 import {
-  DetailedHTMLProps,
-  HTMLAttributes,
   useCallback,
   useEffect,
   useState,
@@ -20,7 +18,7 @@ import './home.css'
 import { open } from '@tauri-apps/api/shell'
 import classNames from 'classnames'
 import Collapse from '../Base/Collapse'
-import { ReactMarkdownProps } from 'react-markdown/lib/complex-types'
+import Button from '../Base/Button'
 
 const Home = () => {
   const config = useStore(configState)
@@ -72,18 +70,7 @@ const Home = () => {
               {props.children}
             </span>)
         },
-        div(
-          props: Omit<
-            DetailedHTMLProps<
-              HTMLAttributes<HTMLDivElement>,
-              HTMLDivElement
-            >, 'ref'
-          >
-            & ReactMarkdownProps
-            & {
-              defaultOpen?: 'true' | 'false'
-            },
-        ) {
+        div(props) {
           if (props.className?.includes('alert')) {
             if (props.className.includes('alert-primary')) return (
               <div {...props}>
@@ -128,12 +115,27 @@ const Home = () => {
           return <div {...props} />
         },
         button(props) {
-          if (props.id === 'refresh') {
-            return <button {...props} onClick={() => window.location.reload()}>{props.children}</button>
-          }
-          return <button {...props} />
+          return (
+            <Button
+              {...props}
+              variant={props.className?.includes('primary')
+                ? 'primary'
+                : props.className?.includes('border')
+                  ? 'border'
+                  : undefined}
+              onClick={() => props.id === 'refresh' && window.location.reload()}
+            >
+              {props.children}
+            </Button>
+          )
         },
       }}
+      className={classNames(
+        'prose dark:prose-invert max-w-[unset]',
+        // normalize
+        'prose-h1:m-0 prose-h2:m-0 prose-h3:m-0 prose-h4:m-0 prose-h5:m-0 prose-h6:m-0',
+        'prose-p:m-0',
+      )}
     >
       {content}
     </ReactMarkdown>

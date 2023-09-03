@@ -21,10 +21,10 @@
   --lightBackground: #f0f0f6;
   --dark: #2a2b2c;
   --darkBackground: #202122;
+
   --background: var(--light);
   --pageBackground: var(--lightBackground);
   /* --primary: check Providers.tsx */
-
   --info: #33b1fe;
   --info-rgb: 6, 178, 252;
   --success: #9fdb1d;
@@ -54,6 +54,6 @@
 
 ::-webkit-scrollbar-thumb {
   width: 6px;
-  background-color: var(--primary);
+  background-color: rgba(var(--primary-rgb), 0.5);
   border-radius: 6px;
 }

@@ -28,7 +28,7 @@ const routes: Route[] = [{
   path: '/download/game/minecraft',
 }, {
   label: '版本列表',
-  icon: 'icon-[ph--shapes-bold]',
+  icon: 'icon-[ph--list-dashes-bold]',
   path: '/version',
 }]
 
