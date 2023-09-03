@@ -18,9 +18,9 @@
 </div>
 
 <div style='display: flex; gap: 0.5rem; margin-bottom: 0.5rem'>
-  <button id='refresh' class='btn btn-primary'>刷新主页</button>
-  <button class='btn'>按钮</button>
-  <button class='btn btn-border'>按钮</button>
+  <button id='refresh' class='primary'>刷新主页</button>
+  <button>按钮</button>
+  <button class='border'>按钮</button>
 </div>
 
 <div class='collapse' title='折叠菜单' style='margin-bottom: 0.5rem;'>
