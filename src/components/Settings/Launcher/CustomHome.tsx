@@ -5,7 +5,11 @@ import { useState } from 'react'
 import Button from '~/components/Base/Button'
 import Input from '~/components/Base/Input'
 import Title from '~/components/Base/Title'
-import { HomeMode, setConfig } from '~/config'
+import Tooltip from '~/components/Base/Tooltip'
+import {
+  HomeMode,
+  setConfig,
+} from '~/config'
 import { configState } from '~/main'
 
 const homeMode: {
@@ -28,9 +32,14 @@ const CustomHome = () => {
 
   return (
     <div className='mb-4'>
-      <Title size='sm' className='mb-2'>
-        {t('settings.launcher.home.label')}
-      </Title>
+      <div className='flex items-center gap-2 mb-2'>
+        <Title size='sm'>
+          {t('settings.launcher.home.label')}
+        </Title>
+        <Tooltip content='使用本地模式将会读取EMCL文件夹的home.md文件，你可以将此文件放在网络上用于联网读取'>
+          <span className="icon-[ph--question-bold] opacity-50" />
+        </Tooltip>
+      </div>
       <div className='grid gap-2'>
         {homeMode.map((mode, i) => (
           <Button

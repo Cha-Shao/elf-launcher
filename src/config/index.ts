@@ -62,8 +62,8 @@ export const setupConfig = async () => {
     ramMode: savedConfig.ramMode || RamMode.Normal,
     colorTheme: savedConfig.colorTheme || '#FF8729',
     language: savedConfig.language || 'zh',
-    homeMode: HomeMode.Empty,
-    homeUrl: '',
+    homeMode: savedConfig.homeMode || HomeMode.Empty,
+    homeUrl: savedConfig.homeUrl || '',
   }
 
   const javaInfo = await getJava()

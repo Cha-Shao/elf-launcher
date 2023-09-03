@@ -16,12 +16,33 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --light: #fafafd;
+  --lightBackground: #f0f0f6;
+  --dark: #2a2b2c;
+  --darkBackground: #202122;
+  --background: var(--light);
+  --pageBackground: var(--lightBackground);
+  /* --primary: check Providers.tsx */
+
+  --info: #33b1fe;
+  --info-rgb: 6, 178, 252;
+  --success: #9fdb1d;
+  --success-rgb: 155, 218, 49;
+  --warning: #f6c941;
+  --warning-rgb: 249, 200, 74;
+  --error: #f54245;
+  --error-rgb: 252, 63, 70;
+  --danger: #f54245;
+  --danger-rgb: 252, 63, 70;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color: #fafafd;
     background-color: #202122;
+    --background: var(--dark);
+    --pageBackground: rgba(var(--darkBackground), 0.5);
   }
 }
 

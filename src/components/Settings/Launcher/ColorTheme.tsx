@@ -35,6 +35,7 @@ const ColorTheme = () => {
         ...prevConfig,
         colorTheme: `#${color}`,
       }))
+      document.getElementById('root')?.style.setProperty('--primary', `#${color}`)
     }
   }
 
@@ -57,6 +58,7 @@ const ColorTheme = () => {
                 ...prevConfig,
                 colorTheme: color,
               }))
+              document.getElementById('root')?.style.setProperty('--primary', color)
             }}
           />
         ))}

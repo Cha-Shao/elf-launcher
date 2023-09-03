@@ -37,6 +37,7 @@ const Button = forwardRef((
         attrs.className,
         'hover:brightness-105 active:brightness-95',
         'duration-200',
+        'select-none',
         variant === 'default' && 'bg-light dark:bg-dark',
         variant === 'primary' && 'text-light',
         variant === 'border' && 'border-2 border-slate-500/20',

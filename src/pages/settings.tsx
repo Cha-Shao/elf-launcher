@@ -70,7 +70,7 @@ const Layout = () => {
           </div>
         ))}
       </div>
-      <div className="pt-8 col-span-3 overflow-y-scroll h-full">
+      <div className="pt-8 col-span-3 overflow-y-scroll overflow-x-hidden h-full">
         <Suspense fallback={<></>}>
           {useRoutes(pageRoutes.find(
             route => route.path === 'settings')!.children!,

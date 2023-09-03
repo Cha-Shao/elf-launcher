@@ -1,46 +1,121 @@
+import { useStore } from '@nanostores/react'
 import {
   exists,
   readTextFile,
   writeBinaryFile,
 } from '@tauri-apps/api/fs'
+import { resolve } from '@tauri-apps/api/path'
 import {
-  appDataDir,
-  resolve,
-} from '@tauri-apps/api/path'
-import {
+  DetailedHTMLProps,
+  HTMLAttributes,
   useCallback,
   useEffect,
   useState,
 } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+import { HomeMode } from '~/config'
 import { configState } from '~/main'
+import './home.css'
+import { open } from '@tauri-apps/api/shell'
+import classNames from 'classnames'
+import Collapse from '../Base/Collapse'
+import { ReactMarkdownProps } from 'react-markdown/lib/complex-types'
 
 const Home = () => {
+  const config = useStore(configState)
   let [content, setContent] = useState('')
 
-  const readLocalHome = useCallback(async () => {
-    const isLocalHomeExist = await exists(await resolve(configState.get().configPath, 'home.md'))
+  const setupLocalHome = useCallback(async () => {
+    const isLocalHomeExist = await exists(await resolve(configState.get().appPath, 'home.md'))
     if (isLocalHomeExist) {
-      const localHomeContent = await readTextFile(await resolve(await appDataDir(), 'home.md'))
-      console.log(localHomeContent)
+      const localHomeContent = await readTextFile(await resolve(configState.get().appPath, 'home.md'))
       setContent(localHomeContent)
     } else {
       const file = await fetch('home.md')
       const buffer = await file.arrayBuffer()
-      const path = await resolve(configState.get().configPath, 'home.md')
+      const path = await resolve(configState.get().appPath, 'home.md')
       await writeBinaryFile(path, buffer)
     }
   }, [])
 
   useEffect(() => {
-    readLocalHome()
+    if (config.homeMode === HomeMode.Local) setupLocalHome()
   }, [])
 
   return (
     <ReactMarkdown
       // @ts-ignore
       rehypePlugins={[rehypeRaw]}
+      components={{
+        a(props) {
+          return (
+            <span
+              className={classNames(
+                'cursor-pointer underline',
+                props.className,
+              )}
+              onClick={() => props.href && open(props.href)}
+            >
+              {props.children}
+            </span>)
+        },
+        div(
+          props: Omit<
+            DetailedHTMLProps<
+              HTMLAttributes<HTMLDivElement>,
+              HTMLDivElement
+            >, 'ref'
+          >
+            & ReactMarkdownProps
+            & {
+              defaultOpen?: 'true' | 'false'
+            },
+        ) {
+          if (props.className?.includes('alert')) {
+            if (props.className.includes('alert-primary')) return (
+              <div {...props}>
+                <span className="icon-[ph--newspaper-clipping-bold] text-lg" />
+                {props.children}
+              </div>
+            )
+            if (props.className.includes('alert-info')) return (
+              <div {...props}>
+                <span className="icon-[ph--info-bold] text-lg" />
+                {props.children}
+              </div>
+            )
+            if (props.className.includes('alert-success')) return (
+              <div {...props}>
+                <span className="icon-[ph--check-circle-bold] text-lg" />
+                {props.children}
+              </div>
+            )
+            if (props.className.includes('alert-warning')) return (
+              <div {...props}>
+                <span className="icon-[ph--warning-bold] text-lg" />
+                {props.children}
+              </div>
+            )
+            if (props.className.includes('alert-error')) return (
+              <div {...props}>
+                <span className="icon-[ph--x-circle-bold] text-lg" />
+                {props.children}
+              </div>
+            )
+          }
+          if (props.className?.includes('collapse'))
+            return (
+              <Collapse
+                {...props}
+                defaultOpen={props.className.includes('collapse-open')}
+                className={props.className.replace('collapse', '')}
+                title={props.title || '未输入标题'}
+              />
+            )
+          return <div {...props} />
+        },
+      }}
     >
       {content}
     </ReactMarkdown>
