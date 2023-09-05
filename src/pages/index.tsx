@@ -12,8 +12,8 @@ const userData: User = {
 
 const Page = () => {
   return (
-    <RouteAnimate className="flex-grow h-full flex flex-col gap-2">
-      <div className="flex-grow pt-8 -mr-4 overflow-y-scroll overflow-x-hidden">
+    <RouteAnimate className="grow h-full flex flex-col gap-2">
+      <div className="grow pt-8 -mr-4 overflow-y-scroll overflow-x-hidden">
         <RouteAnimate className='pr-4'>
           <Suspense fallback={<></>}>
             <Home />

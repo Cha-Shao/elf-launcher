@@ -4,6 +4,7 @@ import Title from '~/components/Base/Title'
 import Button from '~/components/Base/Button'
 import { setConfig } from '~/config'
 import parseLanguage from '~/utils/parseLanguage'
+import classNames from 'classnames'
 
 const Language = () => {
   const { t, i18n: { changeLanguage, language } } = useTranslation()
@@ -33,7 +34,10 @@ const Language = () => {
                 <span className='mr-2'>{parseLanguage(lang)?.symbol}</span>
                 <span>{parseLanguage(lang)?.label}</span>
               </div>
-              {lang === language && <span className="icon-[ph--check-bold]" />}
+              <span className={classNames(
+                'icon-[ph--check-bold]',
+                lang !== language && 'invisible',
+              )} />
             </div>
           </Button>
         ))}

@@ -33,14 +33,9 @@
       "fs": {
         "all": true,
         "scope": [
-          "$APPDATA/",
           "$APPDATA/**",
-          "$RESOURCE/EMCL",
           "$RESOURCE/EMCL/**",
-          "$RESOURCE/.minecraft",
-          "$RESOURCE/.minecraft/**",
-          "$DATA/.minecraft",
-          "$DATA/.minecraft/**"
+          "$RESOURCE/.minecraft/**"
         ]
       },
       "path": {

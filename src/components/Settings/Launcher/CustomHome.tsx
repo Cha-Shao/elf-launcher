@@ -69,7 +69,7 @@ const CustomHome = () => {
             <Input
               defaultValue={homeUrl || ''}
               onChange={val => setHomeUrl(val)}
-              className='flex-grow text-dark dark:text-light'
+              className='grow text-dark dark:text-light'
               onBlur={async () => await setConfig(prevConfig => ({
                 ...prevConfig,
                 homeUrl,
@@ -77,7 +77,7 @@ const CustomHome = () => {
             />
             <span className={classNames(
               'icon-[ph--check-bold]',
-              config.homeMode === HomeMode.Online ? 'opacity-100' : 'opacity-0',
+              config.homeMode !== HomeMode.Online && 'invisible',
             )} />
           </div>
         </Button>

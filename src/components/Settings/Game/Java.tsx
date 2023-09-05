@@ -14,6 +14,7 @@ import { useToast } from '../../Base/ToastsProvider'
 import { configState } from '../../../main'
 import Title from '~/components/Base/Title'
 import Button from '~/components/Base/Button'
+import classNames from 'classnames'
 
 const Java = () => {
   const [loading, setLoading] = useState(false)
@@ -76,7 +77,10 @@ const Java = () => {
               <p>{t('settings.game.java.auto.label')}</p>
               <p className='text-xs opacity-50'>{t('settings.game.java.auto.desc')}</p>
             </div>
-            {config.selectedJava === 'auto' && <span className="icon-[ph--check-bold]" />}
+            <span className={classNames(
+              'icon-[ph--check-bold]',
+              config.selectedJava !== 'auto' && 'invisible',
+            )} />
           </div>
         </Button>
         {config.javaInfo && config.javaInfo.map((info, i) => (
@@ -93,7 +97,10 @@ const Java = () => {
                 <p>{info.version}</p>
                 <p className='text-xs opacity-50'>{info.path}</p>
               </div>
-              {config.selectedJava === info.version && <span className="icon-[ph--check-bold]" />}
+              <span className={classNames(
+                'icon-[ph--check-bold]',
+                config.selectedJava !== info.version && 'invisible',
+              )} />
             </div>
           </Button>
         ))}

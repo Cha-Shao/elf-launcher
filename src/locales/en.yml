@@ -82,3 +82,6 @@ download:
       label: Mod
   install:
     label: Install
+home:
+  refresh:
+    success: Refresh home complete

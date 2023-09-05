@@ -51,7 +51,7 @@ const Page = () => {
       <Title size='lg' className='mb-4'>
         {t('download.game.minecraft.label')}
       </Title>
-      <Card className='flex-grow overflow-hidden'>
+      <Card className='grow overflow-hidden'>
         <div className='h-full flex flex-col overflow-hidden'>
           <div className='p-1 rounded-lg bg-lightBackground dark:bg-darkBackground grid grid-cols-3 gap-1 mb-2'>
             {versionTypes.map((versionType, i) => (
@@ -72,7 +72,7 @@ const Page = () => {
               </button>
             ))}
           </div>
-          <div className='flex-grow overflow-y-scroll'>
+          <div className='grow overflow-y-scroll'>
             {versionManifest
               ? versionManifest.versions
                 .filter(version => version.type.startsWith(selectedType))

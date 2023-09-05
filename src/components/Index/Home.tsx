@@ -19,9 +19,12 @@ import { open } from '@tauri-apps/api/shell'
 import classNames from 'classnames'
 import Collapse from '../Base/Collapse'
 import Button from '../Base/Button'
+import { useToast } from '../Base/ToastsProvider'
+import { t } from 'i18next'
 
 const Home = () => {
   const config = useStore(configState)
+  const toasts = useToast()
   let [content, setContent] = useState('')
 
   const setupOfficialHome = useCallback(async () => {
@@ -47,10 +50,14 @@ const Home = () => {
     setContent(homeText)
   }, [])
 
+  const setupHome = useCallback(async () => {
+    if (config.homeMode === HomeMode.Official) await setupOfficialHome()
+    if (config.homeMode === HomeMode.Local) await setupLocalHome()
+    if (config.homeMode === HomeMode.Online) await setupOnlineHome()
+  }, [])
+
   useEffect(() => {
-    if (config.homeMode === HomeMode.Official) setupOfficialHome()
-    if (config.homeMode === HomeMode.Local) setupLocalHome()
-    if (config.homeMode === HomeMode.Online) setupOnlineHome()
+    setupHome()
   }, [])
 
   return (
@@ -123,7 +130,13 @@ const Home = () => {
                 : props.className?.includes('border')
                   ? 'border'
                   : undefined}
-              onClick={() => props.id === 'refresh' && window.location.reload()}
+              onClick={async () => {
+                if (props.id === 'refresh') {
+                  setContent('')
+                  await setupHome()
+                  toasts.success(t('home.refresh.success'))
+                }
+              }}
             >
               {props.children}
             </Button>

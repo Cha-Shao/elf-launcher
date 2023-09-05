@@ -83,3 +83,6 @@ download:
       label: 模组
   install:
     label: 安装
+home:
+  refresh:
+    success: 主页刷新完成

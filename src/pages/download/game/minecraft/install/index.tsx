@@ -49,7 +49,7 @@ const Page = () => {
               <p className='mr-6'>版本名称</p>
               <Input
                 defaultValue={versionData.id}
-                className='flex-grow'
+                className='grow'
                 onChange={val => setInstallData(prevData => ({
                   ...prevData,
                   versionName: val,
@@ -87,6 +87,7 @@ const Page = () => {
           {t('download.install.label')}
         </Button>
       </div>
+      {JSON.stringify(installData)}
     </RouteAnimate>
   )
 }
